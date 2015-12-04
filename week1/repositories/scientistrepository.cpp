@@ -20,6 +20,20 @@ void ScientistRepository::openDatabase() {
     db.open();
     QSqlQuery query(db);
 
+    string queryCreate = "CREATE TABLE Computers(id INTEGER, Name VARCHAR, Year built INTEGER, Type VARCHAR, Built(yes/no)? VARCHAR);";
+        query.exec(QString(queryCreate.c_str()));
+
+        while(query.next()) {
+            int id = query.value("id").toUInt();
+            string name = query.value("name").toString().toStdString();
+            string year_built = query.value("Year built").toString().toStdString();
+            string type = query.value("type").toString().toStdString();
+            string built = query.value("Built(yes/no)?").toString().toStdString();
+
+
+
+        }
+
     /*string queryCreate = "CREATE TABLE Computers(id INTEGER, name VARCHAR, Year built INTEGER, Type VARCHAR, Built(yes/no)? VARCHAR)";
     query.exec(Qstring(queryInsert.c_str()));
 
