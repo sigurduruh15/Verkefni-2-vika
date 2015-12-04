@@ -14,25 +14,33 @@ void ScientistRepository::openDatabase() {
 
     QSqlDatabase db;
     db = QSqlDatabase::addDatabase("QSQLITE");
-    QString dbName = "Computers.sqlite";
-    db.setDatabaseName("Computers.sqlite");
+    QString dbName = "prufa.sqlite";
+    db.setDatabaseName(dbName);
 
     db.open();
     QSqlQuery query(db);
 
-    string queryCreate = "CREATE TABLE Computers(id INTEGER, Name VARCHAR, Year built INTEGER, Type VARCHAR, Built(yes/no)? VARCHAR);";
-        query.exec(QString(queryCreate.c_str()));
+    query.exec("INSERT INTO Computers VALUES (1, Einar, 1990, 1995, tegund, ja);");
+
+
+    query.prepare("SELECT * FROM Computers;");
+
+    query.exec();
+
+    /*string queryCreate = "CREATE TABLE Computers(id INTEGER, Name VARCHAR, Year built INTEGER, Type VARCHAR, Built(yes/no)? VARCHAR);";
+        query.exec(QString(queryCreate.c_str()));*/
 
         while(query.next()) {
-            int id = query.value("id").toUInt();
-            string name = query.value("name").toString().toStdString();
-            string year_built = query.value("Year built").toString().toStdString();
-            string type = query.value("type").toString().toStdString();
-            string built = query.value("Built(yes/no)?").toString().toStdString();
+            int id = query.value("Id").toUInt();
+            string name = query.value("Name").toString().toStdString();
+            string year_built = query.value("Year build").toString().toStdString();
+            string type = query.value("Type").toString().toStdString();
+            //string built = query.value("Built(yes/no)?").toString().toStdString();
 
-
-
+            cout << name << " " << year_built << " " << type << endl;
         }
+
+
 
     /*string queryCreate = "CREATE TABLE Computers(id INTEGER, name VARCHAR, Year built INTEGER, Type VARCHAR, Built(yes/no)? VARCHAR)";
     query.exec(Qstring(queryInsert.c_str()));
@@ -48,6 +56,7 @@ void ScientistRepository::openDatabase() {
         gDebug() << query.lastQuery
     }*/
 }
+
 
 ScientistRepository::ScientistRepository()
 {
@@ -142,3 +151,4 @@ bool ScientistRepository::addScientist(Scientist scientist)
     file.close();
     return true;
 }
+

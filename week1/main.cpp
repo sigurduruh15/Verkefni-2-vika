@@ -2,8 +2,11 @@
 
 int main()
 {
-    ConsoleUI ui;
+    //ConsoleUI ui;
 
-    return ui.start();
+    ScientistRepository science;
+      science.openDatabase();
+
+    //return ui.start();
 }
 
