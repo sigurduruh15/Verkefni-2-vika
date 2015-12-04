@@ -4,6 +4,7 @@
 *.lo
 *.o
 *.a
+.DS_Store
 *.la
 *.lai
 *.so
