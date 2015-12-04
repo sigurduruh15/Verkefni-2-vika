@@ -21,6 +21,8 @@ class ConsoleUI
 {
 public:
     ConsoleUI();
+    void printComp();
+    void printSciens();
 
     /**
      * @brief start is the main run loop for the application
@@ -82,6 +84,7 @@ private:
     void displayError(std::string error);
 
     ScientistService scientistService;
+    ScientistService Serv;
     enum command lastCommand;
 
     std::string sortBy;

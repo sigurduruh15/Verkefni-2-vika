@@ -30,18 +30,6 @@ void ScientistRepository::openDatabase() {
     /*string queryCreate = "CREATE TABLE Computers(id INTEGER, Name VARCHAR, Year built INTEGER, Type VARCHAR, Built(yes/no)? VARCHAR);";
         query.exec(QString(queryCreate.c_str()));*/
 
-        while(query.next()) {
-            int id = query.value("Id").toUInt();
-            string name = query.value("Name").toString().toStdString();
-            string year_built = query.value("Year build").toString().toStdString();
-            string type = query.value("Type").toString().toStdString();
-            //string built = query.value("Built(yes/no)?").toString().toStdString();
-
-            cout << name << " " << year_built << " " << type << endl;
-        }
-
-
-
     /*string queryCreate = "CREATE TABLE Computers(id INTEGER, name VARCHAR, Year built INTEGER, Type VARCHAR, Built(yes/no)? VARCHAR)";
     query.exec(Qstring(queryInsert.c_str()));
 
@@ -55,6 +43,39 @@ void ScientistRepository::openDatabase() {
     while(query.next) {
         gDebug() << query.lastQuery
     }*/
+}
+void ScientistRepository::printComputers(){
+
+    ScientistRepository print;
+    print.openDatabase();
+    QSqlDatabase db;
+    QSqlQuery query(db);
+
+    while(query.next()) {
+                int id = query.value("Id").toUInt();
+                string name = query.value("Name").toString().toStdString();
+                string year_built = query.value("Year build").toString().toStdString();
+                string type = query.value("Type").toString().toStdString();
+                //string built = query.value("Built(yes/no)?").toString().toStdString();
+
+                //.push_back(Computers(id, name, year_built, type));
+}
+}
+void ScientistRepository::printScientists(){
+
+    ScientistRepository print;
+    print.openDatabase();
+    QSqlDatabase db;
+    QSqlQuery query(db);
+    while(query.next()) {
+                int id = query.value("Id").toUInt();
+                string name = query.value("Name").toString().toStdString();
+                string gender = query.value("Gender").toString().toStdString();
+                string birth = query.value("Birth year").toString().toStdString();
+                string death = query.value("Year of death").toString().toStdString();
+
+                //.push_back(Computers(id, name, gender, birth, death));
+}
 }
 
 

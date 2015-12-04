@@ -13,6 +13,18 @@ ConsoleUI::ConsoleUI()
     sortBy = "name";
     sortAscending = true;
 }
+void printDisplay(){
+   Serv.displayScientist(std::vector<Scientist> scientists);
+}
+
+/*void printComp(){
+    cout << id << "\t" << name << "\t" << year_built << "\t" << type << endl;
+}
+
+void printSciens(){
+    cout << id << "\t" << name << "\t" << gender << "\t" << birth << "\t" << death << endl;
+
+}*/
 
 int ConsoleUI::start()
 {

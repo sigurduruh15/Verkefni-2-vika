@@ -34,6 +34,7 @@ public:
     bool addScientist(Scientist scientist);
 private:
     ScientistRepository scientistRepo;
+
 };
 
 #endif // SCIENTISTSERVICE_H

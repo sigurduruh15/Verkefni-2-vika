@@ -20,6 +20,8 @@ class ScientistRepository
 public:
     ScientistRepository();
     void openDatabase();
+    void printComputers();
+    void printScientists();
 
     /**
      * @brief getAllScientists fetches all scientists from the data file
