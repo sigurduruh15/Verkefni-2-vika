@@ -23,6 +23,8 @@ public:
     void printComputers();
     std::vector<Scientist> printScientists();
     void addScientist();
+    void addPerson();
+    void addComputer();
     /**
      * @brief getAllScientists fetches all scientists from the data file
      * @return a vector containing all scientists in the data file

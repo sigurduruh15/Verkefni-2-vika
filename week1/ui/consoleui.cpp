@@ -28,15 +28,14 @@ void ConsoleUI::printSciens(){
 
    vector<Scientist> v = scientistService.printOutScientists();
 
-    for(int i = 0; i < v.size(); i++){
-        cout << "ID" << v[i].getid() << endl;
-        cout << v[i].getName()<< endl;
-        cout << v[i].getSex()<< endl;
-        cout << v[i].getYearBorn()<< endl;
-        cout << v[i].getYearDied()<< endl;
-
+    for(unsigned int i = 0; i < v.size(); i++){
+        cout << "Id: " << v[i].getid() << endl;
+        cout << "Name: " << v[i].getName()<< endl;
+        cout << "Gender: " <<v[i].getSex()<< endl;
+        cout << "Birth year: "<< v[i].getYearBorn()<< endl;
+        cout << "Year of death: "<< v[i].getYearDied()<< endl;
+        cout << endl;
     }
-    //cout << id << "\t" << name << "\t" << gender << "\t" << birth << "\t" << death << endl;
 
 }
 
