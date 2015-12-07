@@ -16,9 +16,9 @@ ConsoleUI::ConsoleUI()
 void ConsoleUI::printDisplay(){
    scientistService.printOutScientists();
 }
-void ConsoleUI::printDisplay2(){
+/*void ConsoleUI::printDisplay2(){
      scientistService.printOutComputers();
-}
+}*/
 
 /*void printComp(){
     cout << id << "\t" << name << "\t" << year_built << "\t" << type << endl;
@@ -29,11 +29,11 @@ void ConsoleUI::printSciens(){
    vector<Scientist> v = scientistService.printOutScientists();
 
     for(int i = 0; i < v.size(); i++){
-        cout << v[i].getid();
-        cout << v[i].getName();
-        cout << v[i].getSex();
-        cout << v[i].getYearBorn();
-        cout << v[i].getYearDied();
+        cout << "ID" << v[i].getid() << endl;
+        cout << v[i].getName()<< endl;
+        cout << v[i].getSex()<< endl;
+        cout << v[i].getYearBorn()<< endl;
+        cout << v[i].getYearDied()<< endl;
 
     }
     //cout << id << "\t" << name << "\t" << gender << "\t" << birth << "\t" << death << endl;
@@ -115,7 +115,7 @@ void ConsoleUI::readInput()
     {
         if (lastCommand == command::add)
         {
-            addCommandHandler(userInput);
+            //addCommandHandler(userInput);
         }
         else if (lastCommand == command::sort)
         {
@@ -123,7 +123,7 @@ void ConsoleUI::readInput()
         }
         else if (lastCommand == command::search)
         {
-            searchCommandHandler(userInput);
+            //searchCommandHandler(userInput);
         }
         else
         {
@@ -132,7 +132,7 @@ void ConsoleUI::readInput()
     }
 }
 
-void ConsoleUI::addCommandHandler(string userInput)
+/*void ConsoleUI::addCommandHandler(string userInput)
 {
     if (addScientist(userInput)) {
         cout << "Successfully added a scientist\n\n";
@@ -142,7 +142,7 @@ void ConsoleUI::addCommandHandler(string userInput)
     {
         displayError("There was an error in your input.");
     }
-}
+}*/
 
 void ConsoleUI::sortCommandHandler(string userInput)
 {
@@ -156,10 +156,10 @@ void ConsoleUI::sortCommandHandler(string userInput)
     }
 }
 
-void ConsoleUI::searchCommandHandler(string userInput)
+/*void ConsoleUI::searchCommandHandler(string userInput)
 {
     displayScientists(scientistService.searchForScientists(userInput));
-}
+}*/
 
 void ConsoleUI::displayMenu()
 {

@@ -19,7 +19,7 @@ class ScientistRepository
 {
 public:
     ScientistRepository();
-    void openDatabase();
+    QSqlDatabase openDatabase();
     void printComputers();
     std::vector<Scientist> printScientists();
     void addScientist();

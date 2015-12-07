@@ -10,7 +10,7 @@
 #include <cstdlib>
 
 using namespace std;
-void ScientistRepository::openDatabase() {
+QSqlDatabase ScientistRepository::openDatabase() {
 
     QSqlDatabase db;
     db = QSqlDatabase::addDatabase("QSQLITE");
@@ -18,7 +18,8 @@ void ScientistRepository::openDatabase() {
     db.setDatabaseName(dbName);
 
     db.open();
-    QSqlQuery query(db);
+    return db;
+/*    QSqlQuery query(db);
 
     query.exec("INSERT INTO Computers VALUES (1, Einar, 1990, 1995, tegund, ja);");
 
@@ -69,11 +70,14 @@ void ScientistRepository::printComputers(){
 vector<Scientist> ScientistRepository::printScientists(){
 
     ScientistRepository print;
-    print.openDatabase();
-    QSqlDatabase db;
+
+    QSqlDatabase db = print.openDatabase();
     QSqlQuery query(db);
 
-    vector<Scientist>v;
+    query.prepare("Select * from Scientists");
+    query.exec();
+
+    vector<Scientist> v;
     while(query.next()) {
                 int id = query.value("Id").toUInt();
                 string name = query.value("Name").toString().toStdString();
@@ -133,7 +137,7 @@ ScientistRepository::ScientistRepository()
     return scientists;
 }*/
 
-vector<Scientist> ScientistRepository::searchForScientists(string searchTerm)
+/*vector<Scientist> ScientistRepository::searchForScientists(string searchTerm)
 {
     vector<Scientist> allScientists = getAllScientists();
     vector<Scientist> filteredScientists;
@@ -147,7 +151,7 @@ vector<Scientist> ScientistRepository::searchForScientists(string searchTerm)
     }
 
     return filteredScientists;
-}
+}*/
 
 bool ScientistRepository::addScientist(Scientist scientist)
 {
