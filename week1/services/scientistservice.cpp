@@ -28,7 +28,10 @@ bool ScientistService::addScientist(Scientist scientist)
 {
     return scientistRepo.addScientist(scientist);
 }
-std::vector<Scientist> ScientistService::getAllScientists(std::string orderBy, bool orderAscending)
-{
+void ScientistService::printOutScientists(){
+
     return scientistRepo.printScientists();
+}
+void ScientistService::printOutComputers(){
+    return scientistRepo.printComputers();
 }

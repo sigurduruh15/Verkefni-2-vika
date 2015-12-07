@@ -32,9 +32,11 @@ public:
      * @return true if it was a success, false if it was a failure
      */
     bool addScientist(Scientist scientist);
+    void printOutScientists();
+    void printOutComputers();
 private:
     ScientistRepository scientistRepo;
-
+    ScientistRepository  Serv;
 };
 
 #endif // SCIENTISTSERVICE_H

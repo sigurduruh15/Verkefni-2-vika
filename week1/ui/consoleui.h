@@ -82,9 +82,11 @@ private:
     bool setSort(std::string sortCommand);
 
     void displayError(std::string error);
+    void printDisplay();
+    void printDisplay2();
 
     ScientistService scientistService;
-    ScientistService Serv;
+    //ScientistService Serv;
     enum command lastCommand;
 
     std::string sortBy;
