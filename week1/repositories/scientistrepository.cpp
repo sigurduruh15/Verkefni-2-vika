@@ -27,6 +27,9 @@ void ScientistRepository::openDatabase() {
 
     query.exec();
 
+    query.exec("INSERT INTO Tables SELECT Scientists.Id, Computers.Id FROM Scientist INNER JOIN Computers ON Scientists.Id=Computers.Id ORDER BY Scientists.Name;");
+
+
     /*string queryCreate = "CREATE TABLE Computers(id INTEGER, Name VARCHAR, Year built INTEGER, Type VARCHAR, Built(yes/no)? VARCHAR);";
         query.exec(QString(queryCreate.c_str()));*/
 
@@ -44,12 +47,14 @@ void ScientistRepository::openDatabase() {
         gDebug() << query.lastQuery
     }*/
 }
+
 void ScientistRepository::printComputers(){
 
     ScientistRepository print;
     print.openDatabase();
     QSqlDatabase db;
     QSqlQuery query(db);
+
 
     while(query.next()) {
                 int id = query.value("Id").toUInt();
@@ -58,33 +63,37 @@ void ScientistRepository::printComputers(){
                 string type = query.value("Type").toString().toStdString();
                 //string built = query.value("Built(yes/no)?").toString().toStdString();
 
-                //.push_back(Computers(id, name, year_built, type));
+
+            }
 }
-}
-void ScientistRepository::printScientists(){
+vector<Scientist> ScientistRepository::printScientists(){
 
     ScientistRepository print;
     print.openDatabase();
     QSqlDatabase db;
     QSqlQuery query(db);
+
+    vector<Scientist>v;
     while(query.next()) {
                 int id = query.value("Id").toUInt();
                 string name = query.value("Name").toString().toStdString();
-                string gender = query.value("Gender").toString().toStdString();
-                string birth = query.value("Birth year").toString().toStdString();
-                string death = query.value("Year of death").toString().toStdString();
+                sexType gender = sexType(query.value("Gender").toInt());
+                int birth = query.value("Birth year").toUInt();
+                int death = query.value("Year of death").toUInt();
 
-                //.push_back(Computers(id, name, gender, birth, death));
-}
-}
 
+                Scientist s(id, name, gender, birth, death);
+                v.push_back(s);
+            }
+    return v;
+}
 
 ScientistRepository::ScientistRepository()
 {
     fileName = constants::DATA_FILE_NAME;
 }
 
-std::vector<Scientist> ScientistRepository::getAllScientists()
+/*std::vector<Scientist> ScientistRepository::getAllScientists()
 {
     ifstream file;
 
@@ -122,7 +131,7 @@ std::vector<Scientist> ScientistRepository::getAllScientists()
     file.close();
 
     return scientists;
-}
+}*/
 
 vector<Scientist> ScientistRepository::searchForScientists(string searchTerm)
 {
@@ -172,4 +181,3 @@ bool ScientistRepository::addScientist(Scientist scientist)
     file.close();
     return true;
 }
-

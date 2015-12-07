@@ -32,8 +32,8 @@ public:
      * @return true if it was a success, false if it was a failure
      */
     bool addScientist(Scientist scientist);
-    void printOutScientists();
-    void printOutComputers();
+    std::vector<Scientist> printOutScientists();
+    std::vector<Scientist> printOutComputers();
 private:
     ScientistRepository scientistRepo;
     ScientistRepository  Serv;

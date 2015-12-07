@@ -28,10 +28,10 @@ bool ScientistService::addScientist(Scientist scientist)
 {
     return scientistRepo.addScientist(scientist);
 }
-void ScientistService::printOutScientists(){
+vector<Scientist> ScientistService::printOutScientists(){
 
     return scientistRepo.printScientists();
 }
-void ScientistService::printOutComputers(){
+/*vector<Scientist> ScientistService::printOutComputers(){
     return scientistRepo.printComputers();
-}
+}*/

@@ -24,10 +24,21 @@ void ConsoleUI::printDisplay2(){
     cout << id << "\t" << name << "\t" << year_built << "\t" << type << endl;
 }*/
 
-/*void printSciens(){
-    cout << id << "\t" << name << "\t" << gender << "\t" << birth << "\t" << death << endl;
+void ConsoleUI::printSciens(){
 
-}*/
+   vector<Scientist> v = scientistService.printOutScientists();
+
+    for(int i = 0; i < v.size(); i++){
+        cout << v[i].getid();
+        cout << v[i].getName();
+        cout << v[i].getSex();
+        cout << v[i].getYearBorn();
+        cout << v[i].getYearDied();
+
+    }
+    //cout << id << "\t" << name << "\t" << gender << "\t" << birth << "\t" << death << endl;
+
+}
 
 int ConsoleUI::start()
 {
@@ -257,7 +268,7 @@ void ConsoleUI::displayScientists(std::vector<Scientist> scientists)
     }
 }
 
-bool ConsoleUI::addScientist(string data)
+/*bool ConsoleUI::addScientist(string data)
 {
     vector<string> fields = utils::splitString(data, ',');
 
@@ -289,7 +300,7 @@ bool ConsoleUI::addScientist(string data)
     }
 
     return false;
-}
+}*/
 
 bool ConsoleUI::setSort(string sortCommand)
 {

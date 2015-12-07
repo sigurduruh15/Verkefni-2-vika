@@ -21,8 +21,8 @@ public:
     ScientistRepository();
     void openDatabase();
     void printComputers();
-    void printScientists();
-
+    std::vector<Scientist> printScientists();
+    void addScientist();
     /**
      * @brief getAllScientists fetches all scientists from the data file
      * @return a vector containing all scientists in the data file

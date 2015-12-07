@@ -14,17 +14,20 @@ enum sexType {
 class Scientist
 {
 public:
-    Scientist(std::string name, sexType sex, int yearBorn);
-    Scientist(std::string name, sexType sex, int yearBorn, int yearDied);
+    Scientist(int id, std::string name, sexType sex, int yearBorn);
+    Scientist(int id, std::string name, sexType sex, int yearBorn, int yearDied);
 
+    int getid() const;
     std::string getName() const;
     enum sexType getSex() const;
     int getYearBorn() const;
     int getYearDied() const;
 
+
     bool contains(std::string searchTerm);
 
 private:
+    int id;
     std::string name;
     enum sexType sex;
     int yearBorn;
