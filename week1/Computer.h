@@ -1,14 +1,14 @@
-#ifndef COMPUTERS_H
-#define COMPUTERS_H
+#ifndef COMPUTER_H
+#define COMPUTER_H
 
 #include <string>
 using namespace std;
 
 
-class Computers
+class Computer
 {
 public:
-    Computers();
+    Computer(int id, string name, int YearBuilt, string type);
     int getId();
     std::string getName();
     int getYearBuilt();

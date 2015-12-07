@@ -21,8 +21,8 @@ class ConsoleUI
 {
 public:
     ConsoleUI();
-    void printComp();
     void printSciens();
+    void printComput();
 
     /**
      * @brief start is the main run loop for the application

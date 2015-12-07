@@ -32,6 +32,6 @@ vector<Scientist> ScientistService::printOutScientists(){
 
     return scientistRepo.printScientists();
 }
-/*vector<Scientist> ScientistService::printOutComputers(){
+vector<Computer> ScientistService::printOutComputers(){
     return scientistRepo.printComputers();
-}*/
+}

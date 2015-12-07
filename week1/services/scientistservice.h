@@ -33,7 +33,7 @@ public:
      */
     bool addScientist(Scientist scientist);
     std::vector<Scientist> printOutScientists();
-    std::vector<Scientist> printOutComputers();
+    std::vector<Computer> printOutComputers();
 private:
     ScientistRepository scientistRepo;
     ScientistRepository  Serv;

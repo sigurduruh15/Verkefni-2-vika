@@ -10,6 +10,7 @@
 #include <string>
 
 #include "models/scientist.h"
+#include "Computer.h"
 
 
 /**
@@ -20,9 +21,9 @@ class ScientistRepository
 public:
     ScientistRepository();
     QSqlDatabase openDatabase();
-    void printComputers();
+    std::vector<Computer> printComputers();
     std::vector<Scientist> printScientists();
-    void addScientist();
+    //void addScientist();
     void addPerson();
     void addComputer();
     /**

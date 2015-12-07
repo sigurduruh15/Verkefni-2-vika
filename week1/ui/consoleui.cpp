@@ -23,7 +23,19 @@ void ConsoleUI::printDisplay(){
 /*void printComp(){
     cout << id << "\t" << name << "\t" << year_built << "\t" << type << endl;
 }*/
+void ConsoleUI::printComput(){
 
+   vector<Computer> k = scientistService.printOutComputers();
+
+    for(unsigned int i = 0; i < k.size(); i++){
+        cout << "Id: " << k[i].getId() << endl;
+        cout << "Name: " << k[i].getName()<< endl;
+        cout << "Year_built: " << k[i].getYearBuilt()<< endl;
+        cout << "type: "<< k[i].getType()<< endl;
+        cout << endl;
+    }
+
+}
 void ConsoleUI::printSciens(){
 
    vector<Scientist> v = scientistService.printOutScientists();
@@ -36,7 +48,6 @@ void ConsoleUI::printSciens(){
         cout << "Year of death: "<< v[i].getYearDied()<< endl;
         cout << endl;
     }
-
 }
 
 int ConsoleUI::start()

@@ -8,6 +8,8 @@
 #include <QString>
 #include <fstream>
 #include <cstdlib>
+#include <vector>
+#include "Computer.h"
 
 using namespace std;
 QSqlDatabase ScientistRepository::openDatabase() {
@@ -56,20 +58,27 @@ QSqlDatabase ScientistRepository::openDatabase() {
     }*/
 }
 
-void ScientistRepository::printComputers(){
+vector<Computer> ScientistRepository::printComputers(){
 
     ScientistRepository print;
-    print.openDatabase();
-    QSqlDatabase db;
+
+    QSqlDatabase db = print.openDatabase();
     QSqlQuery query(db);
 
+    query.prepare("Select * from Compurers");
+    query.exec();
+
+    vector<Computer> k;
 
     while(query.next()) {
                 int id = query.value("Id").toUInt();
                 string name = query.value("Name").toString().toStdString();
-                string year_built = query.value("Year build").toString().toStdString();
+                int year_built = query.value("Year build").toInt();
                 string type = query.value("Type").toString().toStdString();
                 //string built = query.value("Built(yes/no)?").toString().toStdString();
+
+                Computer s(id, name, year_built, type);
+                k.push_back(s);
             }
 }
 vector<Scientist> ScientistRepository::printScientists(){
@@ -121,7 +130,7 @@ void ScientistRepository::addComputer(){
 
 
     QSqlQuery query;
-    query.prepare("INSERT INTO Scientists (Name, Year_buid, Type)" "VALUES (:Name, :Year_build, :Type)");
+    query.prepare("INSERT INTO Computers (Name, Year_buid, Type)" "VALUES (:Name, :Year_build, :Type)");
     query.bindValue(":Name", QString::fromStdString(name));
     query.bindValue(":Year_build", build);
     query.bindValue(":Type", QString::fromStdString(type));
