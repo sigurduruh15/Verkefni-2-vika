@@ -32,6 +32,7 @@ public:
      * @return true if it was a success, false if it was a failure
      */
     bool addScientist(Scientist scientist);
+    bool addComputer(Scientist computer);
     std::vector<Scientist> printOutScientists();
     std::vector<Computer> printOutComputers();
 private:

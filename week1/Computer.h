@@ -8,17 +8,17 @@ using namespace std;
 class Computer
 {
 public:
-    Computer(int id, string name, int YearBuilt, string type);
-    int getId();
-    std::string getName();
-    int getYearBuilt();
-    string getType();
+    Computer(int id, string name, int yearBuilt, string type);
+    int getId() const ;
+    std::string getName() const ;
+    int getYearBuilt() const ;
+    string getType() const ;
 
 
 private:
     int id;
     std::string name;
-    int YearBuilt;
+    int yearBuilt;
     std::string type;
 };
 

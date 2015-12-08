@@ -40,10 +40,10 @@ QSqlDatabase ScientistRepository::openDatabase() {
     query.exec("INSERT INTO Tables SELECT Scientists.Id, Computers.Id FROM Scientist INNER JOIN Computers ON Scientists.Id=Computers.Id ORDER BY Scientists.Name;");
 
 
-    /*string queryCreate = "CREATE TABLE Computers(id INTEGER, Name VARCHAR, Year built INTEGER, Type VARCHAR, Built(yes/no)? VARCHAR);";
-        query.exec(QString(queryCreate.c_str()));*/
+    string queryCreate = "CREATE TABLE Computers(id INTEGER, Name VARCHAR, Year built INTEGER, Type VARCHAR, Built(yes/no)? VARCHAR);";
+        query.exec(QString(queryCreate.c_str()));
 
-    /*string queryCreate = "CREATE TABLE Computers(id INTEGER, name VARCHAR, Year built INTEGER, Type VARCHAR, Built(yes/no)? VARCHAR)";
+    string queryCreate = "CREATE TABLE Computers(id INTEGER, name VARCHAR, Year built INTEGER, Type VARCHAR, Built(yes/no)? VARCHAR)";
     query.exec(Qstring(queryInsert.c_str()));
 
     string queryInsert = "INSERT INTO Computers VALUES(xxxxxxxxxxxxx)";
@@ -65,7 +65,7 @@ vector<Computer> ScientistRepository::printComputers(){
     QSqlDatabase db = print.openDatabase();
     QSqlQuery query(db);
 
-    query.prepare("Select * from Compurers");
+    query.prepare("Select * from Computers");
     query.exec();
 
     vector<Computer> k;
@@ -73,13 +73,15 @@ vector<Computer> ScientistRepository::printComputers(){
     while(query.next()) {
                 int id = query.value("Id").toUInt();
                 string name = query.value("Name").toString().toStdString();
-                int year_built = query.value("Year build").toInt();
+                int yearBuilt = query.value("Year_build").toInt();
                 string type = query.value("Type").toString().toStdString();
                 //string built = query.value("Built(yes/no)?").toString().toStdString();
 
-                Computer s(id, name, year_built, type);
+                Computer s(id, name, yearBuilt, type);
+
                 k.push_back(s);
             }
+    return k;
 }
 vector<Scientist> ScientistRepository::printScientists(){
 
@@ -92,6 +94,7 @@ vector<Scientist> ScientistRepository::printScientists(){
     query.exec();
 
     vector<Scientist> v;
+
     while(query.next()) {
                 int id = query.value("Id").toUInt();
                 string name = query.value("Name").toString().toStdString();
@@ -103,7 +106,7 @@ vector<Scientist> ScientistRepository::printScientists(){
                 Scientist s(id, name, gender, birth, death);
                 v.push_back(s);
             }
-    addComputer();
+
     return v;
 }
 void ScientistRepository::addPerson(){
@@ -137,38 +140,31 @@ void ScientistRepository::addComputer(){
     query.exec();
 }
 
-ScientistRepository::ScientistRepository()
-{
+ScientistRepository::ScientistRepository() {
     fileName = constants::DATA_FILE_NAME;
 }
 
-/*std::vector<Scientist> ScientistRepository::getAllScientists()
-{
+/*std::vector<Scientist> ScientistRepository::getAllScientists() {
     ifstream file;
 
     file.open(fileName.c_str());
 
     vector<Scientist> scientists;
 
-    if (file.is_open())
-    {
+    if (file.is_open()) {
         string line;
-        while(getline(file, line))
-        {
+        while(getline(file, line)) {
             vector<string> fields = utils::splitString(line, constants::FILE_DELIMETER);
 
-            if (fields.size() >= 3)
-            {
+            if (fields.size() >= 3) {
                 string name = fields.at(0);
                 enum sexType sex = utils::stringToSex(fields.at(1));
                 int yearBorn = utils::stringToInt(fields.at(2));
 
-                if (fields.size() == 3)
-                {
+                if (fields.size() == 3) {
                     scientists.push_back(Scientist(name, sex, yearBorn));
                 }
-                else
-                {
+                else {
                     int yearDied = utils::stringToInt(fields.at(3));
 
                     scientists.push_back(Scientist(name, sex, yearBorn, yearDied));
@@ -182,15 +178,13 @@ ScientistRepository::ScientistRepository()
     return scientists;
 }*/
 
-/*vector<Scientist> ScientistRepository::searchForScientists(string searchTerm)
-{
+/*vector<Scientist> ScientistRepository::searchForScientists(string searchTerm) {
+
     vector<Scientist> allScientists = getAllScientists();
     vector<Scientist> filteredScientists;
 
-    for (unsigned int i = 0; i < allScientists.size(); i++)
-    {
-        if (allScientists.at(i).contains(searchTerm))
-        {
+    for (unsigned int i = 0; i < allScientists.size(); i++) {
+        if (allScientists.at(i).contains(searchTerm)) {
             filteredScientists.push_back(allScientists.at(i));
         }
     }
@@ -198,14 +192,13 @@ ScientistRepository::ScientistRepository()
     return filteredScientists;
 }*/
 
-bool ScientistRepository::addScientist(Scientist scientist)
-{
+bool ScientistRepository::addScientist(Scientist scientist) {
+
     ofstream file;
 
     file.open(fileName.c_str(), std::ios::app);
 
-    if (file.is_open())
-    {
+    if (file.is_open()) {
         string name = scientist.getName();
         enum sexType sex = scientist.getSex();
         int yearBorn = scientist.getYearBorn();
@@ -215,15 +208,13 @@ bool ScientistRepository::addScientist(Scientist scientist)
              << sex << constants::FILE_DELIMETER
              << yearBorn << constants::FILE_DELIMETER;
 
-        if (yearDied != constants::YEAR_DIED_DEFAULT_VALUE)
-        {
+        if (yearDied != constants::YEAR_DIED_DEFAULT_VALUE) {
             file << yearDied;
         }
 
         file << '\n';
     }
-    else
-    {
+    else {
         return false;
     }
 

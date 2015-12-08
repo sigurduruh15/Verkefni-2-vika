@@ -22,70 +22,62 @@ Scientist::Scientist(int id, string name, enum sexType sex, int yearBorn, int ye
     this->yearDied = yearDied;
 }
 
-std::string Scientist::getName() const
-{
+std::string Scientist::getName() const {
+
     return name;
 }
 
-enum sexType Scientist::getSex() const
-{
+enum sexType Scientist::getSex() const {
+
     return sex;
 }
 
-int Scientist::getYearBorn() const
-{
+int Scientist::getYearBorn() const {
+
     return yearBorn;
 }
 
-int Scientist::getYearDied() const
-{
+int Scientist::getYearDied() const {
+
     return yearDied;
 }
-int Scientist::getid() const
-{
+int Scientist::getid() const {
+
     return id;
 }
 
-bool Scientist::contains(string searchTerm)
-{
+bool Scientist::contains(string searchTerm) {
+
     string searchTermLower = utils::stringToLower(searchTerm);
 
     string nameLower = utils::stringToLower(name);
-    if (nameLower.find(searchTermLower) != string::npos)
-    {
+    if (nameLower.find(searchTermLower) != string::npos) {
         return true;
     }
 
-    if (searchTermLower == "male" && sex == sexType::male)
-    {
+    if (searchTermLower == "male" && sex == sexType::male) {
         return true;
     }
 
-    if (searchTermLower == "female" && sex == sexType::female)
-    {
+    if (searchTermLower == "female" && sex == sexType::female) {
         return true;
     }
 
     string yearBornString = utils::intToString(yearBorn);
 
-    if (yearBornString.find(searchTerm) != string::npos)
-    {
+    if (yearBornString.find(searchTerm) != string::npos) {
         return true;
     }
 
-    if (yearDied != constants::YEAR_DIED_DEFAULT_VALUE)
-    {
+    if (yearDied != constants::YEAR_DIED_DEFAULT_VALUE) {
         string yearDiedString = utils::intToString(yearDied);
 
-        if (yearDiedString.find(searchTerm) != string::npos)
-        {
+        if (yearDiedString.find(searchTerm) != string::npos) {
             return true;
         }
     }
-    else
-    {
-        if (searchTermLower == "alive")
-        {
+    else {
+        if (searchTermLower == "alive") {
             return true;
         }
     }

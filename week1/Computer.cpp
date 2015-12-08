@@ -2,23 +2,31 @@
 #include <string>
 using namespace std;
 
-Computer::Computer(int id, string name, int YearBuilt, string type)
-{
-    this ->id = id;
+Computer::Computer(int id, string name, int yearBuilt, string type) {
+    this->id = id;
     this->name = name;
-    this->YearBuilt = YearBuilt;
+    this->yearBuilt = yearBuilt;
     this->type = type;
 }
-int Computer::getId(){
+
+int Computer::getId() const {
+
     return id;
 }
-string Computer::getName(){
+
+string Computer::getName() const {
+
     return name;
 }
-int Computer::getYearBuilt(){
-    return YearBuilt;
+
+int Computer::getYearBuilt() const {
+
+    return yearBuilt;
 }
-string Computer::getType(){
+
+string Computer::getType() const {
+
     return type;
 }
+
 

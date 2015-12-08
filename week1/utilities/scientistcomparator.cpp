@@ -6,27 +6,21 @@ ScientistComparator::ScientistComparator(std::string column, bool sortInAscendin
     this->sortInAscendingOrder = sortInAscendingOrder;
 }
 
-bool ScientistComparator::operator() (const Scientist& first, const Scientist& second)
-{
-    if (sortColumn == "name")
-    {
-        if (sortInAscendingOrder)
-        {
+bool ScientistComparator::operator() (const Scientist& first, const Scientist& second) {
+
+    if (sortColumn == "name") {
+        if (sortInAscendingOrder) {
             return first.getName() < second.getName();
         }
-        else
-        {
+        else {
             return second.getName() < first.getName();
         }
     }
-    else if (sortColumn == "yearBorn")
-    {
-        if (sortInAscendingOrder)
-        {
+    else if (sortColumn == "yearBorn") {
+        if (sortInAscendingOrder) {
             return first.getYearBorn() < second.getYearBorn();
         }
-        else
-        {
+        else {
             return second.getYearBorn() < first.getYearBorn();
         }
     }

@@ -1,12 +1,11 @@
 #include "ui/consoleui.h"
 
-int main()
-{
+int main() {
     ConsoleUI ui;
 
     //ScientistRepository science;
       //science.openDatabase();
-      ui.printSciens();
+      //ui.printSciens();
       ui.printComput();
 
     //return ui.start();
