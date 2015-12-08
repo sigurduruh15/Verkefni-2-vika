@@ -11,8 +11,7 @@ enum command {
     add,
     display,
     search,
-    sort,
-    back,
+    connect,
     quit,
     unknown
 };
@@ -24,8 +23,9 @@ public:
     void printSciens();
     void printComput();
     void addPersonUI();
-    void addMenu();
     void addComputerUI();
+    void addMenu();
+    void connectTables();
 
     /**
      * @brief start is the main run loop for the application

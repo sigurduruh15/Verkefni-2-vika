@@ -25,11 +25,28 @@ void ConsoleUI::display() {
             displayChooseMenu();
             displayMenu();
             break;
+        case command::connect:
+            connectTables();
+            displayMenu();
+            break;
         default:
             displayUnknownCommandMenu();
             break;
     }
 }
+
+void ConsoleUI::connectTables() {
+
+    string inputScientists, inputComputers;
+
+    cout << "Input name of computer scientist: ";
+    getline(cin, inputScientists);
+    cout << "Input name of computer: ";
+    getline(cin, inputComputers);
+
+    scientistService.connectTablesInput(inputScientists, inputComputers);
+}
+
 void ConsoleUI::addPersonUI() {
 
     string name;
@@ -123,9 +140,9 @@ void ConsoleUI::readInput() {
     else if (userInput == "add" && shouldTreatInputAsCommand) {
         lastCommand = command::add;
     }
-    /*else if (userInput == "search" && shouldTreatInputAsCommand) {
-        lastCommand = command::search;
-    }*/
+    else if (userInput == "connect" && shouldTreatInputAsCommand) {
+        lastCommand = command::connect;
+    }
     else if (userInput == "quit") {
         lastCommand = command::quit;
     }
@@ -144,6 +161,8 @@ void ConsoleUI::displayMenu() {
 
     cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
          << "       |   display:     Displays scientists              |" << endl;
+    cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
+         << "       |   connect:     Connect computer to scientists   |" << endl;
 
     /*cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
          << "search:" << "Search for a scientist\n";*/

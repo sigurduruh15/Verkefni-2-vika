@@ -28,7 +28,6 @@ QSqlDatabase ScientistRepository::openDatabase() {
 
     return db;
 
-
 /*    QSqlQuery query(db);
 
     query.exec("INSERT INTO Scientists VALUES (1, Einar, 1990, 1995, tegund, ja);");
@@ -72,16 +71,16 @@ vector<Computer> ScientistRepository::printComputers(){
     vector<Computer> k;
 
     while(query.next()) {
-                int id = query.value("Id").toUInt();
-                string name = query.value("Name").toString().toStdString();
-                int yearBuilt = query.value("Year_build").toInt();
-                string type = query.value("Type").toString().toStdString();
-                //string built = query.value("Built(yes/no)?").toString().toStdString();
+        int id = query.value("Id").toUInt();
+        string name = query.value("Name").toString().toStdString();
+        int yearBuilt = query.value("Year_build").toInt();
+        string type = query.value("Type").toString().toStdString();
+        //string built = query.value("Built(yes/no)?").toString().toStdString();
 
-                Computer s(id, name, yearBuilt, type);
+        Computer s(id, name, yearBuilt, type);
 
-                k.push_back(s);
-            }
+        k.push_back(s);
+    }
     return k;
 }
 
@@ -98,17 +97,16 @@ vector<Scientist> ScientistRepository::printScientists() {
     vector<Scientist> v;
 
     while(query.next()) {
-                int id = query.value("Id").toUInt();
-                string name = query.value("Name").toString().toStdString();
-                string gender = query.value("Gender").toString().toStdString();
-                int birth = query.value("Birth_year").toUInt();
-                int death = query.value("Year_of_death").toUInt();
+        int id = query.value("Id").toUInt();
+        string name = query.value("Name").toString().toStdString();
+        string gender = query.value("Gender").toString().toStdString();
+        int birth = query.value("Birth_year").toUInt();
+        int death = query.value("Year_of_death").toUInt();
 
 
-                Scientist s(id, name, gender, birth, death);
-                v.push_back(s);
-            }
-
+        Scientist s(id, name, gender, birth, death);
+        v.push_back(s);
+    }
     return v;
 }
 
@@ -131,6 +129,29 @@ void ScientistRepository::addComputer(string name, int yearBuild, string type){
     query.bindValue(":Year_build", yearBuild);
     query.bindValue(":Type", QString::fromStdString(type));
     query.exec();
+}
+
+void ScientistRepository::connectTables(string inputScientists, string inputComputers) {
+
+    ScientistRepository print;
+
+    QSqlDatabase db = print.openDatabase();
+    QSqlQuery query;
+
+    query.prepare("SELECT c.name, s.name FROM ConnectTable connect JOIN Scientists s ON s.id = connect.Scientist_Id JOIN Computers c \
+    ON c.id = connect.Computer_Id");
+
+    query.prepare("SELECT Id AS id_sci FROM Scientists WHERE Name = ':Name'");
+    query.bindValue(":Name", QString::fromStdString(inputScientists));
+
+    query.prepare("SELECT Id AS id_com FROM Computers WHERE Name = ':Name'");
+    query.bindValue(":Name", QString::fromStdString(inputComputers));
+
+    query.prepare("INSERT INTO ConnectTable (Scientist_Id, Computer_Id) VALUES (id_sci,id_com)");
+
+    /*query.prepare("Select Name.Scientists, Name.Computers FROM Scientists JOIN Computers \
+    WHERE Id.Scientists = inputScientists AS Scientist_Id AND Id.Computers = AS Computer_Id");
+    query.exec();*/
 }
 
 ScientistRepository::ScientistRepository() {
