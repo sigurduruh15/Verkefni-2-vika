@@ -60,10 +60,7 @@ QSqlDatabase ScientistRepository::openDatabase() {
 
 vector<Computer> ScientistRepository::printComputers(){
 
-    ScientistRepository print;
-
-    QSqlDatabase db = print.openDatabase();
-    QSqlQuery query(db);
+    QSqlQuery query(openDatabase());
 
     query.prepare("Select * from Computers");
     query.exec();
@@ -86,10 +83,7 @@ vector<Computer> ScientistRepository::printComputers(){
 
 vector<Scientist> ScientistRepository::printScientists() {
 
-    ScientistRepository print;
-
-    QSqlDatabase db = print.openDatabase();
-    QSqlQuery query(db);
+    QSqlQuery query(openDatabase());
 
     query.prepare("Select * from Scientists");
     query.exec();
@@ -131,23 +125,17 @@ void ScientistRepository::addComputer(string name, int yearBuild, string type){
     query.exec();
 }
 
-void ScientistRepository::connectTables(string inputScientists, string inputComputers) {
+void ScientistRepository::connectTables(int inputScientists, int inputComputers) {
 
-    ScientistRepository print;
-
-    QSqlDatabase db = print.openDatabase();
     QSqlQuery query;
 
-    query.prepare("SELECT c.name, s.name FROM ConnectTable connect JOIN Scientists s ON s.id = connect.Scientist_Id JOIN Computers c \
+    //query.prepare("SELECT c.name, s.name FROM ConnectTable connect JOIN Scientists s ON s.id = connect.Scientist_Id JOIN Computers c \
     ON c.id = connect.Computer_Id");
 
-    query.prepare("SELECT Id AS id_sci FROM Scientists WHERE Name = ':Name'");
-    query.bindValue(":Name", QString::fromStdString(inputScientists));
-
-    query.prepare("SELECT Id AS id_com FROM Computers WHERE Name = ':Name'");
-    query.bindValue(":Name", QString::fromStdString(inputComputers));
-
-    query.prepare("INSERT INTO ConnectTable (Scientist_Id, Computer_Id) VALUES (id_sci,id_com)");
+    query.prepare("INSERT INTO ConnectTable (Scientist_id, Computer_id)" "VALUES (:id_sci, :id_com)");
+    query.bindValue(":id_sci", inputScientists);
+    query.bindValue(":id_com", inputComputers);
+    query.exec();
 
     /*query.prepare("Select Name.Scientists, Name.Computers FROM Scientists JOIN Computers \
     WHERE Id.Scientists = inputScientists AS Scientist_Id AND Id.Computers = AS Computer_Id");

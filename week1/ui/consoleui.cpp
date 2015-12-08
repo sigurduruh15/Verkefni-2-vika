@@ -37,12 +37,14 @@ void ConsoleUI::display() {
 
 void ConsoleUI::connectTables() {
 
-    string inputScientists, inputComputers;
+    int inputScientists, inputComputers;
 
-    cout << "Input name of computer scientist: ";
-    getline(cin, inputScientists);
-    cout << "Input name of computer: ";
-    getline(cin, inputComputers);
+    cout << "Input ID of computer scientist: ";
+    cin >> inputScientists;
+    cout << "Input ID of computer: ";
+    cin >> inputComputers;
+
+    cin.ignore (std::numeric_limits<std::streamsize>::max(), '\n');
 
     scientistService.connectTablesInput(inputScientists, inputComputers);
 }
@@ -77,7 +79,7 @@ void ConsoleUI::addComputerUI() {
     cout << "Name: ";
     cin >> name;
 
-    cout << "Year Build: ";
+    cout << "Year Build (if computer was not built, put 0): ";
     cin >> yearBuild;
 
     cout << "Type: ";
@@ -93,10 +95,17 @@ void ConsoleUI::printComput(){
     for(unsigned int i = 0; i < k.size(); i++){
         cout << "Id: " << k[i].getId() << endl;
         cout << "Name: " << k[i].getName() << endl;
-        cout << "Year built: " << k[i].getYearBuilt() << endl;
+        cout << "Year built: ";
+        if(k[i].getYearBuilt() == 0) {
+            cout << "Was not built" << endl;
+        }
+        else {
+            cout << k[i].getYearBuilt() << endl;
+        }
         cout << "type: "<< k[i].getType() << endl;
         cout << endl;
     }
+
 }
 
 void ConsoleUI::printSciens(){

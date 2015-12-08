@@ -32,6 +32,6 @@ vector<Computer> ScientistService::printOutComputers(){
     return scientistRepo.printComputers();
 }
 
-void ScientistService::connectTablesInput(std::string inputScientists, std::string inputComputers) {
+void ScientistService::connectTablesInput(int inputScientists, int inputComputers) {
     return scientistRepo.connectTables(inputScientists, inputComputers);
 }

@@ -25,7 +25,7 @@ public:
     std::vector<Scientist> printScientists();
     void addPerson(std::string name, std::string sex, int yearBorn, int yearDeath);
     void addComputer(string name, int yearBuild, string type);
-    void connectTables(string inputScientists, string inputComputers);
+    void connectTables(int inputScientists, int inputComputers);
 
     /**
      * @brief searchForScientists fetches all scientists from file and filters them on searchTerm

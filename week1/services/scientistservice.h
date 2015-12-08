@@ -23,7 +23,7 @@ public:
 
     void addPersonToUi(std::string name, std::string sex, int yearBorn, int yearDeath);
     void addComputerToUi(std::string name, int yearBuild, std::string type);
-    void connectTablesInput(std::string inputScientists, std::string inputComputers);
+    void connectTablesInput(int inputScientists, int inputComputers);
 private:
     ScientistRepository scientistRepo;
     ScientistRepository  Serv;
