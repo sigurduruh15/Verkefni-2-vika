@@ -36,6 +36,7 @@ public:
     std::vector<Scientist> printOutScientists();
     std::vector<Computer> printOutComputers();
     void addPersonToUi(std::string name, std::string sex, int yearBorn, int yearDeath);
+    void addComputerToUi(std::string name, int yearBuild, std::string type);
 private:
     ScientistRepository scientistRepo;
     ScientistRepository  Serv;

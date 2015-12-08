@@ -8,8 +8,7 @@
 
 #include "models/scientist.h"
 /*
-/**
- * This file contains reusable utility functions used throughout the application
+    This file contains reusable utility functions used throughout the application
 
 
 namespace utils {    

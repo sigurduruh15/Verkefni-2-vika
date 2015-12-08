@@ -129,17 +129,17 @@ void ScientistRepository::addPerson(std::string name, std::string sex, int yearB
     query.exec();
 }
 
-void ScientistRepository::addComputer(){
+void ScientistRepository::addComputer(string name, int yearBuild, string type){
 
-    string name = "n";
+   /* string name = "n";
     int build = 1;
-    string type = "g";
+    string type = "g";*/
 
 
     QSqlQuery query;
     query.prepare("INSERT INTO Computers (Name, Year_build, Type)" "VALUES (:Name, :Year_build, :Type)");
     query.bindValue(":Name", QString::fromStdString(name));
-    query.bindValue(":Year_build", build);
+    query.bindValue(":Year_build", yearBuild);
     query.bindValue(":Type", QString::fromStdString(type));
     query.exec();
 }

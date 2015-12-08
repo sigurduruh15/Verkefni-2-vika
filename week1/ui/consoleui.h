@@ -24,6 +24,8 @@ public:
     void printSciens();
     void printComput();
     void addPersonUI();
+    void addMenu();
+    void addComputerUI();
 
     /**
      * @brief start is the main run loop for the application
@@ -43,7 +45,7 @@ private:
     void readInput();
 
     void displayMenu();
-    void displayAddScientistMenu();
+    void displayChooseMenu();
     void displayAllScientists();
     void displayScientistSearchMenu();
     void displayScientistSortMenu();
@@ -54,7 +56,7 @@ private:
      * @brief addCommandHandler calls the addScientist function and notifies the user how it went
      * @param userInput the input the user is trying to create a scientist from
      */
-    void addCommandHandler(std::string userInput);
+    void addCommandHandler();
 
     /**
      * @brief sortCommandHandler calls the setSort function and notifies the user how it went
@@ -83,11 +85,11 @@ private:
     bool setSort(std::string sortCommand);
 
     void displayError(std::string error);
-    void printDisplay();
-    void printDisplay2();
+    //void printDisplay();
+    //void printDisplay2();
 
     ScientistService scientistService;
-    //ScientistService Serv;
+    ScientistService Serv;
     enum command lastCommand;
 
     std::string sortBy;

@@ -13,14 +13,37 @@ ConsoleUI::ConsoleUI()
     sortBy = "name";
     sortAscending = true;
 }
+void ConsoleUI::display() {
 
+    switch (lastCommand) {
+        case command::menu:
+            displayMenu();
+            break;
+        case command::add:
+            addMenu();
+            displayMenu();
+            break;
+        case command::display:
+            //displayAllScientists();
+            displayChooseMenu();
+            displayMenu();
+            break;
+        case command::search:
+            //displayScientistSearchMenu();
+            break;
+        case command::sort:
+            //displayScientistSortMenu();
+            break;
+        default:
+            displayUnknownCommandMenu();
+            break;
+    }
+}
 void ConsoleUI::addPersonUI() {
 
     string name;
     string sex;
     int yearBorn, yearDied;
-
-
 
     cout << "Name: ";
     cin >> name;
@@ -37,11 +60,26 @@ void ConsoleUI::addPersonUI() {
     scientistService.addPersonToUi(name, sex, yearBorn, yearDied);
 }
 
-void ConsoleUI::printDisplay(){
-   scientistService.printOutScientists();
+void ConsoleUI::addComputerUI() {
+
+    string name;
+    string type;
+    int yearBuild;
+
+    cout << "Name: ";
+    cin >> name;
+
+    cout << "Year Build: ";
+    cin >> yearBuild;
+
+    cout << "Type: ";
+    cin >> type;
+
+    scientistService.addComputerToUi(name, yearBuild, type);
 }
-/*void ConsoleUI::printDisplay2(){
-     scientistService.printOutComputers();
+
+/*void ConsoleUI::printDisplay(){
+   scientistService.printOutScientists();
 }*/
 
 void ConsoleUI::printComput(){
@@ -55,8 +93,6 @@ void ConsoleUI::printComput(){
         cout << "type: "<< k[i].getType() << endl;
         cout << endl;
     }
-
-    addPersonUI();
 }
 
 void ConsoleUI::printSciens(){
@@ -83,54 +119,31 @@ int ConsoleUI::start() {
     return 0;
 }
 
-void ConsoleUI::display() {
 
-    switch (lastCommand) {
-        case command::menu:
-            displayMenu();
-            break;
-        case command::add:
-            displayAddScientistMenu();
-            break;
-        case command::display:
-            //displayAllScientists();
-            printSciens();
-            break;
-        case command::search:
-            displayScientistSearchMenu();
-            break;
-        case command::sort:
-            displayScientistSortMenu();
-            break;
-        default:
-            displayUnknownCommandMenu();
-            break;
-    }
-}
 
 void ConsoleUI::readInput() {
 
-    if (lastCommand == command::display) {
-        lastCommand = command::sort;
+   /* if (lastCommand == command::display) {
+        lastCommand = command::menu;
         return;
-    }
+    }*/
 
     string userInput;
     getline(cin, userInput);
 
-    cout << "\n\n";
+    cout << "\n";
 
     bool shouldTreatInputAsCommand = (lastCommand != command::search);
 
     if (userInput == "display" && shouldTreatInputAsCommand) {
-        lastCommand = command::sort;
+        lastCommand = command::display;
     }
     else if (userInput == "add" && shouldTreatInputAsCommand) {
         lastCommand = command::add;
     }
-    else if (userInput == "search" && shouldTreatInputAsCommand) {
+    /*else if (userInput == "search" && shouldTreatInputAsCommand) {
         lastCommand = command::search;
-    }
+    }*/
     else if (userInput == "back") {
         lastCommand = command::menu;
     }
@@ -138,72 +151,76 @@ void ConsoleUI::readInput() {
         lastCommand = command::quit;
     }
     else {
-        if (lastCommand == command::add) {
-            //addCommandHandler(userInput);
-        }
-        else if (lastCommand == command::sort) {
-            sortCommandHandler(userInput);
-        }
-        else if (lastCommand == command::search) {
-            //searchCommandHandler(userInput);
-        }
-        else {
-            lastCommand = command::unknown;
-        }
+        lastCommand = command::unknown;
     }
 }
-
-/*void ConsoleUI::addCommandHandler(string userInput) {
-
-    if (addScientist(userInput)) {
-        cout << "Successfully added a scientist\n\n";
-        lastCommand = command::menu;
-    }
-    else {
-        displayError("There was an error in your input.");
-    }
-}*/
-
-void ConsoleUI::sortCommandHandler(string userInput) {
-
-    if (setSort(userInput)) {
-        lastCommand = command::display;
-    }
-    else {
-        displayError("Your input did not match any of the sort commands");
-    }
-}
-
-/*void ConsoleUI::searchCommandHandler(string userInput) {
-
-    displayScientists(scientistService.searchForScientists(userInput));
-}*/
 
 void ConsoleUI::displayMenu() {
 
-    cout << "Enter a command:\n\n";
+    cout << "       ,-------------------------------------------------," << endl;
+    cout << "       |        *~~~   Enter a command:  ~~~*            |" << endl;
+    cout << "       |                                                 |" << endl;
     cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
-         << "add:" << "Adds a scientist\n";
+         << "       |   add:         Adds a Scientists or a computer  |" << endl;
 
     cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
-         << "display:" << "Displays scientists\n";
+         << "       |   display:     Displays scientists              |" << endl;
+
+    /*cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
+         << "search:" << "Search for a scientist\n";*/
 
     cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
-         << "search:" << "Search for a scientist\n";
-
-    cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
-         << "quit:" << "Quits the program\n\n";
-
+         << "       |   quit:        Quits the program                |" << endl;
+    cout << "       |                                                 |" << endl;
+    cout << "       '-------------------------------------------------'" << endl;
     cout << "Command: ";
 }
 
-void ConsoleUI::displayAddScientistMenu() {
+void ConsoleUI::displayChooseMenu() {
 
-    cout << "To add a scientist, type in:\n";
-    cout << "Name,sex,yearBorn,yearDied (optional)\n";
-    cout << "Comma separated like in the example above.\n\n";
-    cout << "If you would like to go back to the main menu, please type: back\n";
-    cout << "Input: ";
+    int n = 0;
+    cout << "                   ,---------------------," << endl;
+    cout << "                   |1. Display Scientists|" << endl;
+    cout << "                   |2. Display computers |" << endl;
+    cout << "                   '---------------------'" << endl;
+    cout << "Choose a number: ";
+    cin >> n;
+
+    if(n == 1) {
+        printSciens();
+    }
+    else if(n == 2) {
+        printComput();
+    }
+    else if (n != 1 || n != 2) {
+        cout << "Wrong input, try again" << endl;
+        displayChooseMenu();
+    }
+    cin.ignore (std::numeric_limits<std::streamsize>::max(), '\n');
+}
+
+void ConsoleUI::addMenu() {
+
+    int n = 0;
+
+    cout << "                   ,-------------------," << endl;
+    cout << "                   |1. Input Scientists|" << endl;
+    cout << "                   |2. Input computers |" << endl;
+    cout << "                   '-------------------'" << endl;
+    cout << "Choose a number: ";
+    cin >> n;
+
+    if(n == 1) {
+        addPersonUI();
+    }
+    else if(n == 2) {
+        addComputerUI();
+    }
+    else if (n != 1 || n != 2) {
+        cout << "Wrong input, try again" << endl;
+        addMenu();
+    }
+    cin.ignore (std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
 /*void ConsoleUI::displayAllScientists() {
@@ -217,15 +234,15 @@ void ConsoleUI::displayAddScientistMenu() {
     lastCommand = command::display;
 }*/
 
-void ConsoleUI::displayScientistSearchMenu() {
+/*void ConsoleUI::displayScientistSearchMenu() {
 
     cout << "Search for a scientist.\n\n";
 
     cout << "If you would like to go back to the main menu, please type: back\n";
     cout << "Input: ";
-}
+}*/
 
-void ConsoleUI::displayScientistSortMenu() {
+/*void ConsoleUI::displayScientistSortMenu() {
 
     cout << "How should the list be sorted:\n\n";
     cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
@@ -249,7 +266,7 @@ void ConsoleUI::displayScientistSortMenu() {
     cout << "If you would like to go back to the main menu, please type: back\n";
 
     cout << "Command: ";
-}
+}*/
 
 void ConsoleUI::displayUnknownCommandMenu() {
 
@@ -312,7 +329,7 @@ void ConsoleUI::displayUnknownCommandMenu() {
 
     return false;
 }*/
-
+/*
 bool ConsoleUI::setSort(string sortCommand) {
 
     if (sortCommand == constants::SORT_SCIENTIST_NAME_ASCENDING) {
@@ -345,7 +362,7 @@ bool ConsoleUI::setSort(string sortCommand) {
 
     return true;
 }
-
+*/
 void ConsoleUI::displayError(string error) {
 
     cout << "There was an error: " << error << "\n";

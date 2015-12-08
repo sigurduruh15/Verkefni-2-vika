@@ -37,6 +37,10 @@ void ScientistService::addPersonToUi(std::string name, std::string sex, int year
     return scientistRepo.addPerson(name, sex, yearBorn, yearDeath);
 }
 
+void ScientistService::addComputerToUi(std::string name, int yearBuild, std::string type) {
+    return scientistRepo.addComputer(name, yearBuild, type);
+}
+
 vector<Scientist> ScientistService::printOutScientists(){
 
     return scientistRepo.printScientists();
