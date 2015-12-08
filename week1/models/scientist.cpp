@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Scientist::Scientist(int id, string name, enum sexType sex, int yearBorn)
+Scientist::Scientist(int id, string name, string sex, int yearBorn)
 {
     this ->id = id;
     this->name = name;
@@ -13,7 +13,7 @@ Scientist::Scientist(int id, string name, enum sexType sex, int yearBorn)
     this->yearDied = constants::YEAR_DIED_DEFAULT_VALUE;
 }
 
-Scientist::Scientist(int id, string name, enum sexType sex, int yearBorn, int yearDied)
+Scientist::Scientist(int id, string name, string sex, int yearBorn, int yearDied)
 {
     this ->id = id;
     this->name = name;
@@ -27,7 +27,7 @@ std::string Scientist::getName() const {
     return name;
 }
 
-enum sexType Scientist::getSex() const {
+std::string Scientist::getSex() const {
 
     return sex;
 }
@@ -46,7 +46,26 @@ int Scientist::getid() const {
     return id;
 }
 
-bool Scientist::contains(string searchTerm) {
+void Scientist::setName(string n){
+
+    name = n;
+}
+void Scientist::setSex(string s){
+
+    sex = s;
+}
+
+void Scientist::setYearBorn(int b){
+
+    yearBorn = b;
+}
+
+void Scientist::setYearDied(int d){
+
+    yearDied = d;
+}
+
+/* bool Scientist::contains(string searchTerm) {
 
     string searchTermLower = utils::stringToLower(searchTerm);
 
@@ -55,11 +74,11 @@ bool Scientist::contains(string searchTerm) {
         return true;
     }
 
-    if (searchTermLower == "male" && sex == sexType::male) {
+    if (searchTermLower == "male") {
         return true;
     }
 
-    if (searchTermLower == "female" && sex == sexType::female) {
+    if (searchTermLower == "female") {
         return true;
     }
 
@@ -83,4 +102,4 @@ bool Scientist::contains(string searchTerm) {
     }
 
     return false;
-}
+}*/

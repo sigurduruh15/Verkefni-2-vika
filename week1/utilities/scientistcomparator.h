@@ -1,4 +1,4 @@
-#ifndef SCIENTISTCOMPARATOR_H
+//#ifndef SCIENTISTCOMPARATOR_H
 #define SCIENTISTCOMPARATOR_H
 
 #include "models/scientist.h"
@@ -6,7 +6,7 @@
 /**
  * @brief The ScientistComparator can compare two scientists by rules set in the constructor when used with a sort function
  */
-class ScientistComparator
+/*class ScientistComparator
 {
 public:
     ScientistComparator(std::string sortColumn, bool sortInAscendingOrder);
@@ -18,3 +18,4 @@ private:
 };
 
 #endif // SCIENTISTCOMPARATOR_H
+*/

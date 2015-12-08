@@ -5,7 +5,7 @@ int main() {
 
     //ScientistRepository science;
       //science.openDatabase();
-      //ui.printSciens();
+      ui.printSciens();
       ui.printComput();
 
     //return ui.start();

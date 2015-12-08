@@ -13,6 +13,30 @@ ConsoleUI::ConsoleUI()
     sortBy = "name";
     sortAscending = true;
 }
+
+void ConsoleUI::addPersonUI(Scientist scientist) {
+
+    string name;
+    string sex;
+    int yearBorn, yearDied;
+
+    cout << "Name: ";
+    cin >> name;
+    scientist.setName(name);
+    cout << "Gender: ";
+    cin >> sex;
+    scientist.setSex(sex);
+    cout << "Birth year: ";
+    cin >> yearBorn;
+    scientist.setYearBorn(yearBorn);
+    cout << "Death year: ";
+    cin >> yearDied;
+    scientist.setYearDied(yearDied);
+
+
+    scientistService.addPersonToUi(scientist);
+}
+
 void ConsoleUI::printDisplay(){
    scientistService.printOutScientists();
 }
@@ -20,9 +44,6 @@ void ConsoleUI::printDisplay(){
      scientistService.printOutComputers();
 }*/
 
-/*void printComp(){
-    cout << id << "\t" << name << "\t" << year_built << "\t" << type << endl;
-}*/
 void ConsoleUI::printComput(){
 
    vector<Computer> k = scientistService.printOutComputers();
@@ -34,8 +55,8 @@ void ConsoleUI::printComput(){
         cout << "type: "<< k[i].getType() << endl;
         cout << endl;
     }
-
 }
+
 void ConsoleUI::printSciens(){
 
    vector<Scientist> v = scientistService.printOutScientists();
@@ -43,7 +64,7 @@ void ConsoleUI::printSciens(){
     for(unsigned int i = 0; i < v.size(); i++){
         cout << "Id: " << v[i].getid() << endl;
         cout << "Name: " << v[i].getName()<< endl;
-        cout << "Gender: " <<v[i].getSex()<< endl;
+        cout << "Gender: " << v[i].getSex()<< endl;
         cout << "Birth year: "<< v[i].getYearBorn()<< endl;
         cout << "Year of death: "<< v[i].getYearDied()<< endl;
         cout << endl;
@@ -70,7 +91,8 @@ void ConsoleUI::display() {
             displayAddScientistMenu();
             break;
         case command::display:
-            displayAllScientists();
+            //displayAllScientists();
+            printSciens();
             break;
         case command::search:
             displayScientistSearchMenu();
@@ -182,7 +204,7 @@ void ConsoleUI::displayAddScientistMenu() {
     cout << "Input: ";
 }
 
-void ConsoleUI::displayAllScientists() {
+/*void ConsoleUI::displayAllScientists() {
 
     vector<Scientist> scientists = scientistService.getAllScientists(sortBy, sortAscending);
 
@@ -191,7 +213,7 @@ void ConsoleUI::displayAllScientists() {
     cout << '\n';
 
     lastCommand = command::display;
-}
+}*/
 
 void ConsoleUI::displayScientistSearchMenu() {
 
@@ -233,7 +255,7 @@ void ConsoleUI::displayUnknownCommandMenu() {
     cout << "Command: ";
 }
 
-void ConsoleUI::displayScientists(std::vector<Scientist> scientists) {
+/*void ConsoleUI::displayScientists(std::vector<Scientist> scientists) {
 
     if (scientists.size() == 0) {
         cout << "No scientist found.\n";
@@ -248,7 +270,7 @@ void ConsoleUI::displayScientists(std::vector<Scientist> scientists) {
          << setw(12) << std::left << "Year died:" << endl;
 
     for (unsigned int i = 0; i < scientists.size(); i++) {
-        string scientistSex = (scientists.at(i).getSex() == sexType::male) ? "Male" : "Female";
+        string scientistSex = (scientists.at(i).getSex());
 
         int yearDied = scientists.at(i).getYearDied();
         string died = (yearDied == constants::YEAR_DIED_DEFAULT_VALUE) ? "Alive" : utils::intToString(yearDied);
@@ -258,7 +280,7 @@ void ConsoleUI::displayScientists(std::vector<Scientist> scientists) {
              << setw(12) << std::left << scientists.at(i).getYearBorn()
              << setw(12) << std::left << died << endl;
     }
-}
+}*/
 
 /*bool ConsoleUI::addScientist(string data) {
  *

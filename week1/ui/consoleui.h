@@ -23,6 +23,7 @@ public:
     ConsoleUI();
     void printSciens();
     void printComput();
+    void addPersonUI(Scientist scientist);
 
     /**
      * @brief start is the main run loop for the application

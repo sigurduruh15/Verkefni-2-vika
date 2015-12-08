@@ -1,4 +1,4 @@
-#include "utilities/scientistcomparator.h"
+/*#include "utilities/scientistcomparator.h"
 
 ScientistComparator::ScientistComparator(std::string column, bool sortInAscendingOrder)
 {
@@ -29,4 +29,4 @@ bool ScientistComparator::operator() (const Scientist& first, const Scientist& s
 }
 
 
-
+*/

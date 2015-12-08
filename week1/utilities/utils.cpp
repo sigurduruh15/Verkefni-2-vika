@@ -1,4 +1,4 @@
-#include "utilities/utils.h"
+/*#include "utilities/utils.h"
 
 #include <sstream>
 #include <cstdlib>
@@ -60,11 +60,11 @@ namespace utils {
         return stream.str();
     }
 
-    enum sexType intToSex(int number)  {
+    std::string intToSex(int number)  {
         return static_cast<enum sexType>(number);
     }
 
     enum sexType stringToSex(std::string str) {
         return intToSex(stringToInt(str));
     }
-}
+}*/

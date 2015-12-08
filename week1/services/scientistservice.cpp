@@ -28,9 +28,13 @@ bool ScientistService::addScientist(Scientist scientist) {
     return scientistRepo.addScientist(scientist);
 }
 
-bool ScientistService::addComputer(Scientist computer) {
+/*bool ScientistService::addComputer(Scientist computer) {
 
     return scientistRepo.addComputer(computer);
+}*/
+
+void ScientistService::addPersonToUi(Scientist scientist) {
+    return scientistRepo.addPerson(scientist);
 }
 
 vector<Scientist> ScientistService::printOutScientists(){

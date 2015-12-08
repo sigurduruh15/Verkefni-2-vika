@@ -21,6 +21,7 @@ QSqlDatabase ScientistRepository::openDatabase() {
 
     db.open();
     //QSqlQuery query(db);
+    //query.exec("INSERT INTO Computers VALUES (4, JT, 1994, artificial intelligent);");
 
     //query.exec("INSERT INTO Scientists VALUES (1, Einar, 1990, 1995, tegund, ja);");
 
@@ -83,7 +84,8 @@ vector<Computer> ScientistRepository::printComputers(){
             }
     return k;
 }
-vector<Scientist> ScientistRepository::printScientists(){
+
+vector<Scientist> ScientistRepository::printScientists() {
 
     ScientistRepository print;
 
@@ -98,7 +100,7 @@ vector<Scientist> ScientistRepository::printScientists(){
     while(query.next()) {
                 int id = query.value("Id").toUInt();
                 string name = query.value("Name").toString().toStdString();
-                sexType gender = sexType(query.value("Gender").toInt());
+                string gender = query.value("Gender").toString().toStdString();
                 int birth = query.value("Birth_year").toUInt();
                 int death = query.value("Year_of_death").toUInt();
 
@@ -109,22 +111,24 @@ vector<Scientist> ScientistRepository::printScientists(){
 
     return v;
 }
-void ScientistRepository::addPerson(){
 
-    string name = "n";
+void ScientistRepository::addPerson(Scientist scientist){
+
+    /*string name = "n";
     string gender = "g";
     int birth = 1;
-    int death = 2;
+    int death = 2;*/
 
 
     QSqlQuery query;
     query.prepare("INSERT INTO Scientists (Name, Gender, Birth_year, Year_of_death)" "VALUES (:Name, :Gender, :Birth_year, :Year_of_death)");
-    query.bindValue(":Name", QString::fromStdString(name));
-    query.bindValue(":Gender", QString::fromStdString(gender));
-    query.bindValue(":Birth_year", birth);
-    query.bindValue(":Year_of_death", death);
+    query.bindValue(":Name", QString::fromStdString(scientist.getName()));
+    query.bindValue(":Gender", QString::fromStdString(scientist.getSex()));
+    query.bindValue(":Birth_year", (scientist.getYearBorn()));
+    query.bindValue(":Year_of_death", (scientist.getYearDied()));
     query.exec();
 }
+
 void ScientistRepository::addComputer(){
 
     string name = "n";
@@ -133,7 +137,7 @@ void ScientistRepository::addComputer(){
 
 
     QSqlQuery query;
-    query.prepare("INSERT INTO Computers (Name, Year_buid, Type)" "VALUES (:Name, :Year_build, :Type)");
+    query.prepare("INSERT INTO Computers (Name, Year_build, Type)" "VALUES (:Name, :Year_build, :Type)");
     query.bindValue(":Name", QString::fromStdString(name));
     query.bindValue(":Year_build", build);
     query.bindValue(":Type", QString::fromStdString(type));
@@ -200,7 +204,7 @@ bool ScientistRepository::addScientist(Scientist scientist) {
 
     if (file.is_open()) {
         string name = scientist.getName();
-        enum sexType sex = scientist.getSex();
+        string sex = scientist.getSex();
         int yearBorn = scientist.getYearBorn();
         int yearDied = scientist.getYearDied();
 
