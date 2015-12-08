@@ -9,11 +9,6 @@ ScientistService::ScientistService() {
 
 }
 
-/*std::vector<Scientist> ScientistService::searchForScientists(std::string searchTerm) {
- *
-    return scientistRepo.searchForScientists(searchTerm);
-}*/
-
 void ScientistService::addPersonToUi(std::string name, std::string sex, int yearBorn, int yearDeath) {
     return scientistRepo.addPerson(name, sex, yearBorn, yearDeath);
 }

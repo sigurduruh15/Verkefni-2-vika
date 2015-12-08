@@ -21,42 +21,9 @@ QSqlDatabase ScientistRepository::openDatabase() {
     db.setDatabaseName(dbName);
 
     db.open();
-    //QSqlQuery query(db);
-    //query.exec("INSERT INTO Computers VALUES (4, JT, 1994, artificial intelligent);");
-
-    //query.exec("INSERT INTO Scientists VALUES (1, Einar, 1990, 1995, tegund, ja);");
-
 
     return db;
 
-/*    QSqlQuery query(db);
-
-    query.exec("INSERT INTO Scientists VALUES (1, Einar, 1990, 1995, tegund, ja);");
-
-
-    query.prepare("SELECT * FROM Computers;");
-
-    query.exec();
-
-    query.exec("INSERT INTO Tables SELECT Scientists.Id, Computers.Id FROM Scientist INNER JOIN Computers ON Scientists.Id=Computers.Id ORDER BY Scientists.Name;");
-
-
-    string queryCreate = "CREATE TABLE Computers(id INTEGER, Name VARCHAR, Year built INTEGER, Type VARCHAR, Built(yes/no)? VARCHAR);";
-        query.exec(QString(queryCreate.c_str()));
-
-    string queryCreate = "CREATE TABLE Computers(id INTEGER, name VARCHAR, Year built INTEGER, Type VARCHAR, Built(yes/no)? VARCHAR)";
-    query.exec(Qstring(queryInsert.c_str()));
-
-    string queryInsert = "INSERT INTO Computers VALUES(xxxxxxxxxxxxx)";
-    if { query.exec(Qstring(queryInsert.c_str()));
-        //ef þetta gerist þá gerum við eitthvað við gögnin
-    }
-
-    query.prepare("SELECT * FROM Computers WHERE id = :id);");
-
-    while(query.next) {
-        gDebug() << query.lastQuery
-    }*/
 }
 
 vector<Computer> ScientistRepository::printComputers(){
@@ -151,34 +118,14 @@ void ScientistRepository::connectTables(int inputScientists, int inputComputers)
 
     QSqlQuery query;
 
-    //query.prepare("SELECT c.name, s.name FROM ConnectTable connect JOIN Scientists s ON s.id = connect.Scientist_Id JOIN Computers c \
-    ON c.id = connect.Computer_Id");
-
     query.prepare("INSERT INTO ConnectTable (Scientist_id, Computer_id)" "VALUES (:id_sci, :id_com)");
     query.bindValue(":id_sci", inputScientists);
     query.bindValue(":id_com", inputComputers);
     query.exec();
 
-    /*query.prepare("Select Name.Scientists, Name.Computers FROM Scientists JOIN Computers \
-    WHERE Id.Scientists = inputScientists AS Scientist_Id AND Id.Computers = AS Computer_Id");
-    query.exec();*/
 }
 
 ScientistRepository::ScientistRepository() {
     fileName = constants::DATA_FILE_NAME;
 }
-
-/*vector<Scientist> ScientistRepository::searchForScientists(string searchTerm) {
-
-    vector<Scientist> allScientists = getAllScientists();
-    vector<Scientist> filteredScientists;
-
-    for (unsigned int i = 0; i < allScientists.size(); i++) {
-        if (allScientists.at(i).contains(searchTerm)) {
-            filteredScientists.push_back(allScientists.at(i));
-        }
-    }
-
-    return filteredScientists;
-}*/
 

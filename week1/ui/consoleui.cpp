@@ -67,6 +67,15 @@ void ConsoleUI::addPersonUI() {
     cout << "Death year: ";
     cin >> yearDied;
 
+    if(yearBorn > yearDied && yearDied != 0){
+        cout << "You can't die before you are born! input again!" << endl;
+        cout << "Birth year: ";
+        cin >> yearBorn;
+        cout << "Death year: ";
+        cin >> yearDied;
+
+    }
+
     scientistService.addPersonToUi(name, sex, yearBorn, yearDied);
 }
 
@@ -79,7 +88,7 @@ void ConsoleUI::addComputerUI() {
     cout << "Name: ";
     cin >> name;
 
-    cout << "Year Build (if computer was not built, put 0): ";
+    cout << "Year Build (if computer was not built, input 0): ";
     cin >> yearBuild;
 
     cout << "Type: ";
@@ -173,24 +182,24 @@ void ConsoleUI::readInput() {
 
 void ConsoleUI::displayMenu() {
 
-    cout << "       ,-------------------------------------------------," << endl;
-    cout << "       |        *~~~   Enter a command:  ~~~*            |" << endl;
-    cout << "       |                                                 |" << endl;
+    cout << "       ,---------------------------------------------------------------," << endl;
+    cout << "       |               *~~~   Enter a command:  ~~~*                   |" << endl;
+    cout << "       |                                                               |" << endl;
     cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
-         << "       |   add:         Adds a Scientists or a computer  |" << endl;
+         << "       |   add:         Add a scientist or a computer                  |" << endl;
 
     cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
-         << "       |   display:     Displays scientists              |" << endl;
+         << "       |   display:     Display scientists, computers or connect table |" << endl;
     cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
-         << "       |   connect:     Connect computer to scientists   |" << endl;
+         << "       |   connect:     Connect computer and scientist                 |" << endl;
 
     /*cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
          << "search:" << "Search for a scientist\n";*/
 
     cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
-         << "       |   quit:        Quits the program                |" << endl;
-    cout << "       |                                                 |" << endl;
-    cout << "       '-------------------------------------------------'" << endl;
+         << "       |   quit:        Quits the program                              |" << endl;
+    cout << "       |                                                               |" << endl;
+    cout << "       '---------------------------------------------------------------'" << endl;
     cout << "Command: ";
 }
 
