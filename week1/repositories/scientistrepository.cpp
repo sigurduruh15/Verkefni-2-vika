@@ -114,12 +114,6 @@ vector<Scientist> ScientistRepository::printScientists() {
 
 void ScientistRepository::addPerson(std::string name, std::string sex, int yearBorn, int yearDeath){
 
-    /*string name = "n";
-    string gender = "g";
-    int birth = 1;
-    int death = 2;*/
-
-
     QSqlQuery query;
     query.prepare("INSERT INTO Scientists (Name, Gender, Birth_year, Year_of_death)" "VALUES (:Name, :Gender, :Birth_year, :Year_of_death)");
     query.bindValue(":Name", QString::fromStdString(name));
@@ -130,11 +124,6 @@ void ScientistRepository::addPerson(std::string name, std::string sex, int yearB
 }
 
 void ScientistRepository::addComputer(string name, int yearBuild, string type){
-
-   /* string name = "n";
-    int build = 1;
-    string type = "g";*/
-
 
     QSqlQuery query;
     query.prepare("INSERT INTO Computers (Name, Year_build, Type)" "VALUES (:Name, :Year_build, :Type)");
@@ -147,40 +136,6 @@ void ScientistRepository::addComputer(string name, int yearBuild, string type){
 ScientistRepository::ScientistRepository() {
     fileName = constants::DATA_FILE_NAME;
 }
-
-/*std::vector<Scientist> ScientistRepository::getAllScientists() {
-    ifstream file;
-
-    file.open(fileName.c_str());
-
-    vector<Scientist> scientists;
-
-    if (file.is_open()) {
-        string line;
-        while(getline(file, line)) {
-            vector<string> fields = utils::splitString(line, constants::FILE_DELIMETER);
-
-            if (fields.size() >= 3) {
-                string name = fields.at(0);
-                enum sexType sex = utils::stringToSex(fields.at(1));
-                int yearBorn = utils::stringToInt(fields.at(2));
-
-                if (fields.size() == 3) {
-                    scientists.push_back(Scientist(name, sex, yearBorn));
-                }
-                else {
-                    int yearDied = utils::stringToInt(fields.at(3));
-
-                    scientists.push_back(Scientist(name, sex, yearBorn, yearDied));
-                }
-            }
-        }
-    }
-
-    file.close();
-
-    return scientists;
-}*/
 
 /*vector<Scientist> ScientistRepository::searchForScientists(string searchTerm) {
 
@@ -196,32 +151,3 @@ ScientistRepository::ScientistRepository() {
     return filteredScientists;
 }*/
 
-bool ScientistRepository::addScientist(Scientist scientist) {
-
-    ofstream file;
-
-    file.open(fileName.c_str(), std::ios::app);
-
-    if (file.is_open()) {
-        string name = scientist.getName();
-        string sex = scientist.getSex();
-        int yearBorn = scientist.getYearBorn();
-        int yearDied = scientist.getYearDied();
-
-        file << name << constants::FILE_DELIMETER
-             << sex << constants::FILE_DELIMETER
-             << yearBorn << constants::FILE_DELIMETER;
-
-        if (yearDied != constants::YEAR_DIED_DEFAULT_VALUE) {
-            file << yearDied;
-        }
-
-        file << '\n';
-    }
-    else {
-        return false;
-    }
-
-    file.close();
-    return true;
-}

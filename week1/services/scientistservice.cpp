@@ -9,28 +9,9 @@ ScientistService::ScientistService() {
 
 }
 
-std::vector<Scientist> ScientistService::getAllScientists(std::string orderBy, bool orderAscending) {
-
-    //vector<Scientist> scientists = scientistRepo.getAllScientists();
-
-    //std::sort(scientists.begin(), scientists.end(), ScientistComparator(orderBy, orderAscending));
-    vector<Scientist> scientists;
-    return scientists;
-}
-
 /*std::vector<Scientist> ScientistService::searchForScientists(std::string searchTerm) {
  *
     return scientistRepo.searchForScientists(searchTerm);
-}*/
-
-bool ScientistService::addScientist(Scientist scientist) {
-
-    return scientistRepo.addScientist(scientist);
-}
-
-/*bool ScientistService::addComputer(Scientist computer) {
-
-    return scientistRepo.addComputer(computer);
 }*/
 
 void ScientistService::addPersonToUi(std::string name, std::string sex, int yearBorn, int yearDeath) {

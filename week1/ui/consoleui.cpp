@@ -10,8 +10,6 @@ using namespace std;
 ConsoleUI::ConsoleUI()
 {
     lastCommand = command::menu;
-    sortBy = "name";
-    sortAscending = true;
 }
 void ConsoleUI::display() {
 
@@ -24,15 +22,8 @@ void ConsoleUI::display() {
             displayMenu();
             break;
         case command::display:
-            //displayAllScientists();
             displayChooseMenu();
             displayMenu();
-            break;
-        case command::search:
-            //displayScientistSearchMenu();
-            break;
-        case command::sort:
-            //displayScientistSortMenu();
             break;
         default:
             displayUnknownCommandMenu();
@@ -78,10 +69,6 @@ void ConsoleUI::addComputerUI() {
     scientistService.addComputerToUi(name, yearBuild, type);
 }
 
-/*void ConsoleUI::printDisplay(){
-   scientistService.printOutScientists();
-}*/
-
 void ConsoleUI::printComput(){
 
    vector<Computer> k = scientistService.printOutComputers();
@@ -123,11 +110,6 @@ int ConsoleUI::start() {
 
 void ConsoleUI::readInput() {
 
-   /* if (lastCommand == command::display) {
-        lastCommand = command::menu;
-        return;
-    }*/
-
     string userInput;
     getline(cin, userInput);
 
@@ -144,9 +126,6 @@ void ConsoleUI::readInput() {
     /*else if (userInput == "search" && shouldTreatInputAsCommand) {
         lastCommand = command::search;
     }*/
-    else if (userInput == "back") {
-        lastCommand = command::menu;
-    }
     else if (userInput == "quit") {
         lastCommand = command::quit;
     }
@@ -223,146 +202,13 @@ void ConsoleUI::addMenu() {
     cin.ignore (std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
-/*void ConsoleUI::displayAllScientists() {
-
-    vector<Scientist> scientists = scientistService.getAllScientists(sortBy, sortAscending);
-
-    displayScientists(scientists);
-
-    cout << '\n';
-
-    lastCommand = command::display;
-}*/
-
-/*void ConsoleUI::displayScientistSearchMenu() {
-
-    cout << "Search for a scientist.\n\n";
-
-    cout << "If you would like to go back to the main menu, please type: back\n";
-    cout << "Input: ";
-}*/
-
-/*void ConsoleUI::displayScientistSortMenu() {
-
-    cout << "How should the list be sorted:\n\n";
-    cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
-         << constants::SORT_SCIENTIST_NAME_ASCENDING << "Sorts by name, ascending.\n";
-
-    cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
-         << constants::SORT_SCIENTIST_NAME_DESCENDING << "Sorts by name, descending.\n";
-
-    cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
-         << constants::SORT_SCIENTIST_YEAR_BORN_ASCENDING << "Sorts by year born, ascending.\n";
-
-    cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
-         << constants::SORT_SCIENTIST_YEAR_BORN_DESCENDING << "Sorts by year born, descending.\n";
-
-    cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
-         << constants::SORT_SCIENTIST_YEAR_DIED_ASCENDING << "Sorts by year died, ascending.\n";
-
-    cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
-         << constants::SORT_SCIENTIST_YEAR_DIED_DESCENDING << "Sorts by year died, descending.\n\n";
-
-    cout << "If you would like to go back to the main menu, please type: back\n";
-
-    cout << "Command: ";
-}*/
-
 void ConsoleUI::displayUnknownCommandMenu() {
 
     displayError("Unknown command");
     cout << "Command: ";
 }
 
-/*void ConsoleUI::displayScientists(std::vector<Scientist> scientists) {
 
-    if (scientists.size() == 0) {
-        cout << "No scientist found.\n";
-        return;
-    }
-
-    cout << "Printing all scientists:\n";
-
-    cout << setw(20) << std::left << "Name:"
-         << setw(8) << std::left << "Sex:"
-         << setw(12) << std::left << "Year born:"
-         << setw(12) << std::left << "Year died:" << endl;
-
-    for (unsigned int i = 0; i < scientists.size(); i++) {
-        string scientistSex = (scientists.at(i).getSex());
-
-        int yearDied = scientists.at(i).getYearDied();
-        string died = (yearDied == constants::YEAR_DIED_DEFAULT_VALUE) ? "Alive" : utils::intToString(yearDied);
-
-        cout << setw(20) << std::left << scientists.at(i).getName()
-             << setw(8) << std::left << scientistSex
-             << setw(12) << std::left << scientists.at(i).getYearBorn()
-             << setw(12) << std::left << died << endl;
-    }
-}*/
-
-/*bool ConsoleUI::addScientist(string data) {
- *
-    vector<string> fields = utils::splitString(data, ',');
-
-    if (fields.size() > 2 && fields.size() < 5) {
-        string name = fields.at(0);
-
-        enum sexType sex;
-        if (fields.at(1) == "male") {
-            sex = sexType::male;
-        }
-        else {
-            sex = sexType::female;
-        }
-        int yearBorn = utils::stringToInt(fields.at(2));
-
-        if (fields.size() == 3) {
-            return scientistService.addScientist(Scientist(name, sex, yearBorn));
-        }
-        else {
-            int yearDied = utils::stringToInt(fields.at(3));
-
-            return scientistService.addScientist(Scientist(name, sex, yearBorn, yearDied));
-        }
-    }
-
-    return false;
-}*/
-/*
-bool ConsoleUI::setSort(string sortCommand) {
-
-    if (sortCommand == constants::SORT_SCIENTIST_NAME_ASCENDING) {
-        sortBy = "name";
-        sortAscending = true;
-    }
-    else if (sortCommand == constants::SORT_SCIENTIST_NAME_DESCENDING) {
-        sortBy = "name";
-        sortAscending = false;
-    }
-    else if (sortCommand == constants::SORT_SCIENTIST_YEAR_BORN_ASCENDING) {
-        sortBy = "yearBorn";
-        sortAscending = true;
-    }
-    else if (sortCommand == constants::SORT_SCIENTIST_YEAR_BORN_DESCENDING) {
-        sortBy = "yearBorn";
-        sortAscending = false;
-    }
-    else if (sortCommand == constants::SORT_SCIENTIST_YEAR_DIED_ASCENDING) {
-        sortBy = "yearDied";
-        sortAscending = true;
-    }
-    else if (sortCommand == constants::SORT_SCIENTIST_YEAR_DIED_DESCENDING) {
-        sortBy = "yearDied";
-        sortAscending = false;
-    }
-    else {
-        return false;
-    }
-
-    return true;
-}
-*/
 void ConsoleUI::displayError(string error) {
 
     cout << "There was an error: " << error << "\n";
