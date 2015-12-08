@@ -11,6 +11,7 @@
 
 #include "models/scientist.h"
 #include "Computer.h"
+#include "ConnectTab.h"
 
 
 /**
@@ -26,6 +27,7 @@ public:
     void addPerson(std::string name, std::string sex, int yearBorn, int yearDeath);
     void addComputer(string name, int yearBuild, string type);
     void connectTables(int inputScientists, int inputComputers);
+    vector<ConnectTab> printConnectTable();
 
     /**
      * @brief searchForScientists fetches all scientists from file and filters them on searchTerm

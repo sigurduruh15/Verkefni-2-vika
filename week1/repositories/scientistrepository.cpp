@@ -10,6 +10,7 @@
 #include <cstdlib>
 #include <vector>
 #include "Computer.h"
+#include "ConnectTab.h"
 
 using namespace std;
 QSqlDatabase ScientistRepository::openDatabase() {
@@ -79,6 +80,27 @@ vector<Computer> ScientistRepository::printComputers(){
         k.push_back(s);
     }
     return k;
+}
+vector<ConnectTab> ScientistRepository::printConnectTable(){
+
+    QSqlQuery query(openDatabase());
+
+    query.prepare("SELECT s.name AS SciName, c.name AS ComName FROM ConnectTable connect JOIN Scientists s ON s.id = connect.Scientist_Id JOIN Computers c ON c.id = connect.Computer_Id");
+    query.exec();
+
+    vector<ConnectTab> c;
+
+    while(query.next()) {
+        string nameSci = query.value("SciName").toString().toStdString();
+        string nameCom = query.value("ComName").toString().toStdString();
+
+        ConnectTab m(nameSci, nameCom);
+        c.push_back(m);
+    }
+    return c;
+
+    printComputers();
+    printScientists();
 }
 
 vector<Scientist> ScientistRepository::printScientists() {

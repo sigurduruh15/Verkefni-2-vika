@@ -26,6 +26,7 @@ public:
     void addComputerUI();
     void addMenu();
     void connectTables();
+    void printConnectTabl();
 
     /**
      * @brief start is the main run loop for the application

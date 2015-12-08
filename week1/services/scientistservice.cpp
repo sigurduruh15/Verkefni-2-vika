@@ -35,3 +35,6 @@ vector<Computer> ScientistService::printOutComputers(){
 void ScientistService::connectTablesInput(int inputScientists, int inputComputers) {
     return scientistRepo.connectTables(inputScientists, inputComputers);
 }
+vector<ConnectTab> ScientistService::printConnectService(){
+    return scientistRepo.printConnectTable();
+}

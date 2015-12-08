@@ -121,6 +121,17 @@ void ConsoleUI::printSciens(){
         cout << endl;
     }
 }
+void ConsoleUI::printConnectTabl(){
+
+   vector<ConnectTab> c = scientistService.printConnectService();
+
+    for(unsigned int i = 0; i < c.size(); i++){
+        cout << "Name of scientist: " << c[i].getSciName() << endl;
+        cout << "Name of computer: " << c[i].getComName()<< endl;
+        cout << endl;
+    }
+}
+
 
 int ConsoleUI::start() {
 
@@ -189,6 +200,7 @@ void ConsoleUI::displayChooseMenu() {
     cout << "                   ,---------------------," << endl;
     cout << "                   |1. Display Scientists|" << endl;
     cout << "                   |2. Display computers |" << endl;
+    cout << "                   |3. Display connection|" << endl;
     cout << "                   '---------------------'" << endl;
     cout << "Choose a number: ";
     cin >> n;
@@ -198,6 +210,9 @@ void ConsoleUI::displayChooseMenu() {
     }
     else if(n == 2) {
         printComput();
+    }
+    else if(n == 3) {
+        printConnectTabl();
     }
     else if (n != 1 || n != 2) {
         cout << "Wrong input, try again" << endl;

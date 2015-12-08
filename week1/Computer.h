@@ -13,6 +13,7 @@ public:
     std::string getName() const ;
     int getYearBuilt() const ;
     string getType() const ;
+    void printConnectTabl();
 
 
 private:

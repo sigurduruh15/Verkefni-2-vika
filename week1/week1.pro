@@ -14,12 +14,14 @@ SOURCES += main.cpp \
     repositories/scientistrepository.cpp \
     services/scientistservice.cpp \
     ui/consoleui.cpp \
-    Computer.cpp
+    Computer.cpp \
+    ConnectTab.cpp
 
 HEADERS += \
     models/scientist.h \
     repositories/scientistrepository.h \
     services/scientistservice.h \
     ui/consoleui.h \
-    Computer.h
+    Computer.h \
+    ConnectTab.h
 

@@ -24,6 +24,7 @@ public:
     void addPersonToUi(std::string name, std::string sex, int yearBorn, int yearDeath);
     void addComputerToUi(std::string name, int yearBuild, std::string type);
     void connectTablesInput(int inputScientists, int inputComputers);
+    vector<ConnectTab> printConnectService();
 private:
     ScientistRepository scientistRepo;
     ScientistRepository  Serv;
