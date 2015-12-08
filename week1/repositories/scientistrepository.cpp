@@ -112,7 +112,7 @@ vector<Scientist> ScientistRepository::printScientists() {
     return v;
 }
 
-void ScientistRepository::addPerson(Scientist scientist){
+void ScientistRepository::addPerson(std::string name, std::string sex, int yearBorn, int yearDeath){
 
     /*string name = "n";
     string gender = "g";
@@ -122,10 +122,10 @@ void ScientistRepository::addPerson(Scientist scientist){
 
     QSqlQuery query;
     query.prepare("INSERT INTO Scientists (Name, Gender, Birth_year, Year_of_death)" "VALUES (:Name, :Gender, :Birth_year, :Year_of_death)");
-    query.bindValue(":Name", QString::fromStdString(scientist.getName()));
-    query.bindValue(":Gender", QString::fromStdString(scientist.getSex()));
-    query.bindValue(":Birth_year", (scientist.getYearBorn()));
-    query.bindValue(":Year_of_death", (scientist.getYearDied()));
+    query.bindValue(":Name", QString::fromStdString(name));
+    query.bindValue(":Gender", QString::fromStdString(sex));
+    query.bindValue(":Birth_year", (yearBorn));
+    query.bindValue(":Year_of_death", (yearDeath));
     query.exec();
 }
 

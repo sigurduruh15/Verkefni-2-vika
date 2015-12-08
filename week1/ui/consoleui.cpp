@@ -14,27 +14,27 @@ ConsoleUI::ConsoleUI()
     sortAscending = true;
 }
 
-void ConsoleUI::addPersonUI(Scientist scientist) {
+void ConsoleUI::addPersonUI() {
 
     string name;
     string sex;
     int yearBorn, yearDied;
 
+
+
     cout << "Name: ";
     cin >> name;
-    scientist.setName(name);
+
     cout << "Gender: ";
     cin >> sex;
-    scientist.setSex(sex);
+
     cout << "Birth year: ";
     cin >> yearBorn;
-    scientist.setYearBorn(yearBorn);
+
     cout << "Death year: ";
     cin >> yearDied;
-    scientist.setYearDied(yearDied);
 
-
-    scientistService.addPersonToUi(scientist);
+    scientistService.addPersonToUi(name, sex, yearBorn, yearDied);
 }
 
 void ConsoleUI::printDisplay(){
@@ -55,6 +55,8 @@ void ConsoleUI::printComput(){
         cout << "type: "<< k[i].getType() << endl;
         cout << endl;
     }
+
+    addPersonUI();
 }
 
 void ConsoleUI::printSciens(){

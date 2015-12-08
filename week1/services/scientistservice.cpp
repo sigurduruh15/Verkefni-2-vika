@@ -33,8 +33,8 @@ bool ScientistService::addScientist(Scientist scientist) {
     return scientistRepo.addComputer(computer);
 }*/
 
-void ScientistService::addPersonToUi(Scientist scientist) {
-    return scientistRepo.addPerson(scientist);
+void ScientistService::addPersonToUi(std::string name, std::string sex, int yearBorn, int yearDeath) {
+    return scientistRepo.addPerson(name, sex, yearBorn, yearDeath);
 }
 
 vector<Scientist> ScientistService::printOutScientists(){

@@ -24,7 +24,7 @@ public:
     std::vector<Computer> printComputers();
     std::vector<Scientist> printScientists();
     //void addScientist();
-    void addPerson(Scientist scientist);
+    void addPerson(std::string name, std::string sex, int yearBorn, int yearDeath);
     void addComputer();
     /**
      * @brief getAllScientists fetches all scientists from the data file
