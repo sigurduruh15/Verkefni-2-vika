@@ -29,6 +29,10 @@ void ConsoleUI::display() {
             connectTables();
             displayMenu();
             break;
+        case command::pretty:
+            printPretty();
+            displayMenu();
+            break;
         default:
             displayUnknownCommandMenu();
             break;
@@ -152,8 +156,6 @@ int ConsoleUI::start() {
     return 0;
 }
 
-
-
 void ConsoleUI::readInput() {
 
     string userInput;
@@ -171,6 +173,9 @@ void ConsoleUI::readInput() {
     }
     else if (userInput == "connect" && shouldTreatInputAsCommand) {
         lastCommand = command::connect;
+    }
+    else if (userInput == "pretty" && shouldTreatInputAsCommand) {
+        lastCommand = command::pretty;
     }
     else if (userInput == "quit") {
         lastCommand = command::quit;
@@ -192,10 +197,8 @@ void ConsoleUI::displayMenu() {
          << "       |   display:     Display scientists, computers or connect table |" << endl;
     cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
          << "       |   connect:     Connect computer and scientist                 |" << endl;
-
-    /*cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
-         << "search:" << "Search for a scientist\n";*/
-
+    cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
+         << "       |   pretty:      print pretty                                   |" << endl;
     cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
          << "       |   quit:        Quits the program                              |" << endl;
     cout << "       |                                                               |" << endl;
@@ -260,9 +263,25 @@ void ConsoleUI::displayUnknownCommandMenu() {
     cout << "Command: ";
 }
 
-
 void ConsoleUI::displayError(string error) {
 
     cout << "There was an error: " << error << "\n";
-    cout << "Please try again or type 'back' to go back.\n\n";
+    cout << "Please try again.\n\n";
+}
+
+void ConsoleUI::printPretty() {
+
+    cout << "" << endl;
+    cout << "                        8888888888  888    88888 " << endl;
+    cout << "                       88     88   88 88   88  88" << endl;
+    cout << "                        8888  88  88   88  88888" << endl;
+    cout << "                           88 88 888888888 88   88" << endl;
+    cout << "                    88888888  88 88     88 88    888888" << endl;
+    cout << "" << endl;
+    cout << "                    88  88  88   888    88888    888888" << endl;
+    cout << "                    88  88  88  88 88   88  88  88" << endl;
+    cout << "                     88 8888 88 88   88  88888    8888" << endl;
+    cout << "                      888  888 888888888 88   88     88" << endl;
+    cout << "                       88  88  88     88 88    8888888" << endl;
+    cout << endl;
 }

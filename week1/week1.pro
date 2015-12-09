@@ -1,6 +1,7 @@
 QT += core
 QT += core sql
 QT -= gui
+QT += webkitwidgets
 
 TARGET = week1
 CONFIG += console

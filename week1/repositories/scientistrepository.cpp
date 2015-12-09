@@ -40,7 +40,6 @@ vector<Computer> ScientistRepository::printComputers(){
         string name = query.value("Name").toString().toStdString();
         int yearBuilt = query.value("Year_build").toInt();
         string type = query.value("Type").toString().toStdString();
-        //string built = query.value("Built(yes/no)?").toString().toStdString();
 
         Computer s(id, name, yearBuilt, type);
 
@@ -65,9 +64,6 @@ vector<ConnectTab> ScientistRepository::printConnectTable(){
         c.push_back(m);
     }
     return c;
-
-    printComputers();
-    printScientists();
 }
 
 vector<Scientist> ScientistRepository::printScientists() {

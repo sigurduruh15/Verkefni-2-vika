@@ -12,6 +12,7 @@ enum command {
     display,
     search,
     connect,
+    pretty,
     quit,
     unknown
 };
@@ -27,28 +28,16 @@ public:
     void addMenu();
     void connectTables();
     void printConnectTabl();
+    void printPretty();
 
-    /**
-     * @brief start is the main run loop for the application
-     * @return should indicate how the program exists, currently always safely
-     */
     int start();
 
 private:
-    /**
-     * @brief display serves as a router to according display functions
-     */
     void display();
-
-    /**
-     * @brief readInput handles user input by settings commands or processing it
-     */
     void readInput();
-
     void displayMenu();
     void displayChooseMenu();
     void displayUnknownCommandMenu();
-
     void displayError(std::string error);
 
     ScientistService scientistService;
